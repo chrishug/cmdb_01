@@ -1,0 +1,58 @@
+.pg-header {
+    top:0;
+    left:0;
+    right: 0;
+    height: 50px;
+}
+
+body{
+    margin: 0;
+    padding: 0
+}
+
+.menu {
+    position: fixed;
+    float: left;
+    background-color: #333;
+    width: 200px;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    min-width: 200px;
+}
+
+.nav > li > a {
+    color: white;
+    border-radius: 0;
+    font-size: 15px;
+}
+
+.nav-btn > li > a:hover {
+    background-color: #272727;
+}
+
+.nav-btn > li > a:focus {
+    background-color: #010101;
+}
+
+.content {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 200px;
+    background-color: #FFFFFF;
+}
+
+.color{
+    background-color: #3C3C3C;
+}
+.bg {
+    background-color: #333;
+    color: white;
+    border-color: #3C3C3C;
+}
+
+.bg:hover > th {
+  background-color: #080808;
+}
