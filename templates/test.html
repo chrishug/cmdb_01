@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block kuang %}
+    <h1 style="padding-left: 50px;">机器管理</h1><hr>
+    <div class="table-responsive " style="width: 95%; padding-left: 50px">
+        <table class="table table-hover table-bordered">
+            <tr class="bg">
+                <th>序号</th>
+                <th>城市</th>
+                <th>楼层</th>
+                <th>机房</th>
+                <th>柜组号</th>
+                <th>机器位置</th>
+                <th>SN码</th>
+                <th>客户编码</th>
+                <th>客户</th>
+                <th>规格</th>
+                <th>操作系统</th>
+                <th>VLAN_IP</th>
+                <th>管理IP</th>
+                <th>内网IP</th>
+                <th>备注</th>
+                <th>标签打印</th>
+                <th>操作</th>
+            </tr>
+            {% for item in obj_execl %}
+                <tr class="btn-group-sm">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>{{ item.floor }}</td>
+                    <td>{{ item.room }}</td>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.location_num }}</td>
+                    <td>{{ item.sn }}</td>
+                    <td>{{ item.client_code }}</td>
+                    <td>{{ item.client }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.OS }}</td>
+                    <td>{{ item.vlan_ip }}</td>
+                    <td>{{ item.management_ip }}</td>
+                    <td>{{ item.intranet_ip }}</td>
+                    <td>{{ item.note }}</td>
+                    <td><label><input name="Fruit" type="checkbox" value="" checked="{{ item.print_label }}"/></label>
+                    </td>
+                    <td>
+                        <button>添加</button>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

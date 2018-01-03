@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block kuang %}
+<div>
+    <h1 style="padding-left: 50px;">用户组</h1><hr>
+    <div class="table-responsive " style="width: 95%; padding-left: 50px">
+        <table class="table table-hover table-bordered">
+            <tr class="bg">
+                <th>序号</th>
+                <th>组名</th>
+                <th>成员</th>
+                <th>操作</th>
+            </tr>
+            {% for item in obj_Group %}
+                <tr class="btn-group-sm">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.users.name }}</td>
+                    <td>
+                        <button>添加</button>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

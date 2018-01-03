@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block kuang %}
+    <h1 style="padding-left: 50px">用户管理</h1><hr>
+    <div class="table-responsive " style="width: 95%; padding-left: 50px">
+        <table class="table table-hover table-bordered">
+            <tr class="bg">
+                <th>序号</th>
+                <th>用户名</th>
+                <th>邮箱</th>
+                <th>手机</th>
+                <th>电话</th>
+                <th>管理员</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr>
+            {% for item in obj_UserProfile %}
+                <tr class="btn-group-sm">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.mobile }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td>{{ item.admininfo.username }}</td>
+                    <td>{{ item.admininfo.password }}</td>
+                    <td>
+                        <button>添加</button>
+                        <button>修改</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

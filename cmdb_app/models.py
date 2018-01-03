@@ -15,7 +15,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.name
 
-
 class AdminInfo(models.Model):
     """
     用户登陆相关信息
@@ -30,7 +29,6 @@ class AdminInfo(models.Model):
     def __str__(self):
         return self.user_info.name
 
-
 class UserGroup(models.Model):
     """
     用户组
@@ -43,7 +41,6 @@ class UserGroup(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class BusinessUnit(models.Model):
     """
@@ -59,7 +56,6 @@ class BusinessUnit(models.Model):
     def __str__(self):
         return self.name
 
-
 class IDC(models.Model):
     """
     机房信息
@@ -73,7 +69,6 @@ class IDC(models.Model):
     def __str__(self):
         return self.name
 
-
 class Tag(models.Model):
     """
     资产标签
@@ -85,7 +80,6 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Asset(models.Model):
     """
@@ -123,7 +117,6 @@ class Asset(models.Model):
     def __str__(self):
         return "%s-%s-%s" % (self.idc.name, self.cabinet_num, self.cabinet_order)
 
-
 class Server(models.Model):
     """
     服务器信息
@@ -152,7 +145,6 @@ class Server(models.Model):
     def __str__(self):
         return self.hostname
 
-
 class NetworkDevice(models.Model):
     asset = models.OneToOneField('Asset')
     management_ip = models.CharField('管理IP', max_length=64, blank=True, null=True)
@@ -167,7 +159,6 @@ class NetworkDevice(models.Model):
     class Meta:
         verbose_name_plural = "网络设备"
 
-
 class Disk(models.Model):
     """
     硬盘信息
@@ -176,14 +167,13 @@ class Disk(models.Model):
     model = models.CharField('磁盘型号', max_length=32)
     capacity = models.FloatField('磁盘容量GB')
     pd_type = models.CharField('磁盘类型', max_length=32)
-    server_obj = models.ForeignKey('Server',related_name='disk')
+    server_obj = models.ForeignKey('Server', related_name='disk')
 
     class Meta:
         verbose_name_plural = "硬盘表"
 
     def __str__(self):
         return self.slot
-
 
 class NIC(models.Model):
     """
@@ -194,15 +184,13 @@ class NIC(models.Model):
     netmask = models.CharField(max_length=64)
     ipaddrs = models.CharField('ip地址', max_length=256)
     up = models.BooleanField(default=False)
-    server_obj = models.ForeignKey('Server',related_name='nic')
-
+    server_obj = models.ForeignKey('Server', related_name='nic')
 
     class Meta:
         verbose_name_plural = "网卡表"
 
     def __str__(self):
         return self.name
-
 
 class Memory(models.Model):
     """
@@ -215,8 +203,7 @@ class Memory(models.Model):
     sn = models.CharField('内存SN号', max_length=64, null=True, blank=True)
     speed = models.CharField('速度', max_length=16, null=True, blank=True)
 
-    server_obj = models.ForeignKey('Server',related_name='memory')
-
+    server_obj = models.ForeignKey('Server', related_name='memory')
 
     class Meta:
         verbose_name_plural = "内存表"
@@ -224,23 +211,20 @@ class Memory(models.Model):
     def __str__(self):
         return self.slot
 
-
 class AssetRecord(models.Model):
     """
     资产变更记录,creator为空时，表示是资产汇报的数据。
     """
     asset_obj = models.ForeignKey('Asset', related_name='ar')
-    content = models.TextField(null=True)# 新增硬盘
-    creator = models.ForeignKey('UserProfile', null=True, blank=True) #
+    content = models.TextField(null=True)  # 新增硬盘
+    creator = models.ForeignKey('UserProfile', null=True, blank=True)  #
     create_at = models.DateTimeField(auto_now_add=True)
-
 
     class Meta:
         verbose_name_plural = "资产记录表"
 
     def __str__(self):
         return "%s-%s-%s" % (self.asset_obj.idc.name, self.asset_obj.cabinet_num, self.asset_obj.cabinet_order)
-
 
 class ErrorLog(models.Model):
     """
@@ -256,3 +240,33 @@ class ErrorLog(models.Model):
 
     def __str__(self):
         return self.title
+
+class execl(models.Model):
+    city = models.CharField('城市',max_length=20 ,blank=True, null=True)
+    room = models.CharField('机房', max_length=20 ,blank=True, null=True)
+    floor = models.CharField('楼层', max_length=20 ,blank=True, null=True)
+    location = models.CharField('机架位', max_length=30 ,blank=True, null=True)
+    location_num = models.IntegerField('机架编号', blank=True, null=True)
+    size = models.CharField('尺寸', max_length=20 ,blank=True, null=True)
+    sn = models.CharField('SN号', max_length=64, unique=True)
+    manufacture = models.CharField(verbose_name=u'制造商', max_length=128, null=True, blank=True)
+    model = models.CharField('型号/规格', max_length=128, null=True, blank=True)
+    client_code = models.CharField('客户编码', max_length=20 ,blank=True, null=True)
+    OS = models.CharField('OS', max_length=20 ,blank=True, null=True)
+    client = models.CharField('客户', max_length=20 ,blank=True, null=True)
+    print_label = models.BooleanField('是否打印标签', default=False)
+    note = models.TextField('备注', max_length=200 ,blank=True, null=True)
+    management_ip = models.GenericIPAddressField('管理IP', max_length=64, blank=True, null=True)
+    vlan_ip = models.GenericIPAddressField('VlanIP', max_length=64, blank=True, null=True)
+    intranet_ip = models.GenericIPAddressField('内网IP', max_length=128, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "托管管理表"
+
+    def __str__(self):
+        return  " %s - %s " %(self.client, self.sn)
+
+
+
+
+

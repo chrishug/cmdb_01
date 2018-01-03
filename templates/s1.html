@@ -40,21 +40,21 @@
             border-top: none
         }
     </style>
-    <script type="text/javascript">
-        function $(id) {
-            return document.getElementById(id)
-        }
-
-        window.onload = function () {
-            $("nav").onclick = function (e) {
-                var src = e ? e.target : event.srcElement;
-                if (src.tagName == "H3") {
-                    var next = src.nextElementSibling || src.nextSibling;
-                    next.style.display = (next.style.display == "block") ? "none" : "block";
-                }
-            }
-        }
-    </script>
+{#    <script type="text/javascript">#}
+{#        function $(id) {#}
+{#            return document.getElementById(id)#}
+{#        }#}
+{##}
+{#        window.onload = function () {#}
+{#            $("nav").onclick = function (e) {#}
+{#                var src = e ? e.target : event.srcElement;#}
+{#                if (src.tagName == "H3") {#}
+{#                    var next = src.nextElementSibling || src.nextSibling;#}
+{#                    next.style.display = (next.style.display == "block") ? "none" : "block";#}
+{#                }#}
+{#            }#}
+{#        }#}
+{#    </script>#}
 </head>
 
 <body>
@@ -73,64 +73,6 @@
     </div>
 </div>
 
-<div class="col-sm-3 col-md-2 sidebar">
-    <div class="totalt"><a>系统管理系统</a></div>
-    <ul class="menu">
-        <li class="title">
 
-            <a class="item item1"><span class="glyphicon glyphicon-chevron-down myarrow "></span>账号管理
-            </a>
-
-
-            <ul class="content">
-                <li> <a class="item item2"  href="right5.html" target="right" ><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a>
-                </li>
-                <li>  <a class="item item2" href="right.html" target="right"><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a></li>
-                <li> <a class="item item2" href="right2.html" target="right"><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a></li>
-
-            </ul>
-        </li>
-        <li class="title ">
-
-            <a class=" item item1"><span class="glyphicon glyphicon-chevron-down myarrow "></span>账号管理
-            </a>
-
-            <ul class="content">
-                <li> <a class="item item2" href="#" ><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a>
-                </li>
-                <li> <a class="item item2" href="#"><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a></li>
-                <li> <a class="item item2" href="#"><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a></li>
-
-            </ul>
-        </li>
-
-        <li class="title">
-
-            <a class="item item1"><span class="glyphicon glyphicon-chevron-down myarrow "></span>账号管理
-            </a>
-
-            <ul class="content">
-                <li>
-                    <a class="item item2" href="#" >
-                        <span class="glyphicon glyphicon-step-backward "></span>账号管理
-                    </a>
-                </li>
-                <li>  <a class="item item2" href="#" ><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a></li>
-                <li> <a class="item item2" href="#" ><span class="glyphicon glyphicon-step-backward "></span>账号管理
-                </a></li>
-
-            </ul>
-        </li>
-
-    </ul>
-
-</div>
 </body>
 </html>

@@ -19,7 +19,9 @@ from cmdb_app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index/', views.index),
-    # url(r'^info/$', views.info),
+    url(r'^group/', views.group),
+    url(r'^users/$', views.users),
     url(r'^login/$', views.login),
+    url(r'^test/$', views.test),
+
 ]

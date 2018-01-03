@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from cmdb_app import models
 
-
 # Create your views here.
 
 def login(request):
@@ -14,23 +13,41 @@ def login(request):
         user_obj = models.AdminInfo.objects.filter(username=user, password=pwd).first()
         if user_obj:
             res = redirect('/index/')
-            res.set_cookie('user', user, max_age=100000000)
+            res.set_cookie('user', user, max_age=86400)
             return res
         else:
             error_msg = "用户名或密码错误"
         return render(request, 'login.html', {'error_msg': error_msg})
 
 
-def index(request):
+def auth(func):
+    def inner(reqeust, *args, **kwargs):
+        v = reqeust.COOKIES.get('user')
+        if not v:
+            return redirect('/login/')
+        return func(reqeust, *args, **kwargs)
+    return inner
+
+@auth
+def group(request):
     v = request.COOKIES.get('user')
-    if not v:
-        return redirect('/login/')
+    obj_Group = models.UserGroup.objects.all()
+    return render(request, 'group.html',
+                  {'current_user': v, 'obj_Group': obj_Group})
+
+@auth
+def users(request):
+    v = request.COOKIES.get('user')
     obj_UserProfile = models.UserProfile.objects.all()
     obj_AdminInfo = models.AdminInfo.objects.all()
-    obj_Group = models.UserGroup.objects.all()
-    return render(request, 'index.html',
+    return render(request, 'users.html',
                   {'current_user': v,
                    'obj_UserProfile': obj_UserProfile,
                    'obj_AdminInfo': obj_AdminInfo,
-                   'obj_Group': obj_Group,
                    })
+
+@auth
+def test(request):
+    v = request.COOKIES.get('user')
+    obj_execl = models.execl.objects.all()
+    return render(request, 'test.html', {'current_user': v,'obj_execl':obj_execl })
